@@ -1,0 +1,17 @@
+alias less='less -r' # Interpreting color codes.
+
+# Traversing up the directory tree.
+alias u='cd ../'
+alias uu='cd ../../'
+alias uuu='cd ../../../'
+alias uuu='cd ../../../'
+alias uuuu='cd ../../../../'
+alias uuuuu='cd ../../../../../'
+alias uuuuuu='cd ../../../../../../'
+alias uuuuuuu='cd ../../../../../../../'
+
+# git-related.
+alias ga='git add -u'
+alias gca='git commit --amend'
+alias grc='git rebase --continue'
+alias gri='git rebase -i mainline'

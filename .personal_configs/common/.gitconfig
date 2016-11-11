@@ -1,0 +1,21 @@
+[user]
+        name = Piotr Krzeminski
+
+[color]
+        ui = auto
+
+[alias]
+        st = status
+        ci = commit
+        co = checkout
+        unadd = reset HEAD
+        dag = log --graph --format='format:%C(yellow)%h%C(reset) %C(blue)\"%an\" <%ae>%C(reset) %C(magenta)%cr%C(reset)%C(auto)%d%C(reset)%n%s' --date-order
+        split = reset HEAD^
+[push]
+        default = simple
+
+[rerere]
+        enabled = true
+
+[core]
+        pager = less -FMRiX
