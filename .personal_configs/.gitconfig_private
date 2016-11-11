@@ -1,0 +1,5 @@
+[include]
+    path = ~/PersonalConfigs/common/.gitignore
+
+[user]
+    email = piotr@krzeminski.it
