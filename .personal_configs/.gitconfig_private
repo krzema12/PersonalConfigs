@@ -1,5 +1,5 @@
 [include]
-    path = ~/PersonalConfigs/common/.gitignore
+    path = ~/PersonalConfigs/.personal_configs/common/.gitconfig
 
 [user]
     email = piotr@krzeminski.it
