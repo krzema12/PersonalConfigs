@@ -1,3 +1,5 @@
+PERSONAL_CONFIGS_PATH="~/PersonalConfigs/.personal_configs"
+
 if [ ! -d ~/PersonalConfigs ]
 then
     echo "Cloning repo with configs..."
@@ -7,7 +9,7 @@ else
     echo "No need to clone repo"
 fi
 
-SHRC_SOURCE="source ~/PersonalConfigs/.personal_configs/.bashrc_private"
+SHRC_SOURCE="source $PERSONAL_CONFIGS_PATH/.bashrc_private"
 if ! grep -Fxq "$SHRC_SOURCE" ~/.bashrc
 then
     echo "Adding shrc..."
@@ -17,7 +19,7 @@ else
     echo "No need to add shrc"
 fi
 
-VIMRC_SOURCE="source ~/PersonalConfigs/.personal_configs/.vimrc_private"
+VIMRC_SOURCE="source $PERSONAL_CONFIGS_PATH/.vimrc_private"
 if ! grep -Fxq "$VIMRC_SOURCE" ~/.vimrc
 then
     echo "Adding vimrc..."
@@ -26,7 +28,7 @@ else
     echo "No need to add vimrc"
 fi
 
-GITCONFIG_SOURCE="path = ~/PersonalConfig/.personal_configs/.gitconfig_private"
+GITCONFIG_SOURCE="path = $PERSONAL_CONFIGS_PATH/.gitconfig_private"
 if ! grep -Fxq "$GITCONFIG_SOURCE" ~/.gitconfig
 then
     echo "Adding gitconfig..."
