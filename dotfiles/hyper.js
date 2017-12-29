@@ -57,6 +57,7 @@ module.exports = {
     'hyperlinks',
     'gitrocket',
     'hyper-solarized-dark',
+    'hyper-tab-icons', // Requires setting command name in the window title. See https://github.com/zeit/hyper/issues/1188#issuecomment-267301723
   ],
 
   keymaps: {
