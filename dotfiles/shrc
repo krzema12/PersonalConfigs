@@ -15,6 +15,42 @@ alias uuuuuuu='cd ../../../../../../../'
 alias ga='git add -u'
 alias gca='git commit --amend'
 alias grc='git rebase --continue'
-alias gri='git rebase -i mainline'
 alias gds='git diff --staged'
 alias gda='git dag --all'
+
+# Tries to detect a name of the main branch
+function main-branch {
+  BRANCH_NAMES_TO_TRY=(master mainline)
+
+  for BRANCH_NAME in ${BRANCH_NAMES_TO_TRY[@]}
+  do
+    if [ `git rev-parse --verify --quiet $BRANCH_NAME` ]
+    then
+      echo $BRANCH_NAME
+      break
+    fi
+  done
+}
+
+function gri {
+    git rebase -i `main-branch`
+}
+
+function gmb {
+    local main_branch_name=`main-branch`
+    echo "Main branch: ${main_branch_name}"
+
+    local branch_name=`git rev-parse --abbrev-ref HEAD`
+    echo "Merging '${branch_name}' branch and pushing to '${main_branch_name}'..."
+
+    git checkout "${main_branch_name}" && \
+    git pull                           && \
+    git checkout "${branch_name}"      && \
+    git rebase "${main_branch_name}"   && \
+    git checkout "${main_branch_name}" && \
+    git merge "${branch_name}"         && \
+    git branch -d "${branch_name}"     && \
+    git push
+
+    echo "DONE!"
+}
