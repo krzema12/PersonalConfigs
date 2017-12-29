@@ -18,5 +18,6 @@
         enabled = true
 
 [core]
+        excludesfile = ~/.gitignore
         pager = less -FMRiX
         editor = vim
