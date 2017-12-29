@@ -1,3 +1,4 @@
+alias l='ls -la'
 alias less='less -r' # Interpreting color codes.
 
 # Traversing up the directory tree.
