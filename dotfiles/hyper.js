@@ -56,6 +56,7 @@ module.exports = {
   plugins: [
     'hyperlinks',
     'gitrocket',
+    'hyper-solarized-dark',
   ],
 
   keymaps: {
