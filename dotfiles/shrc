@@ -17,6 +17,7 @@ alias gca='git commit --amend'
 alias grc='git rebase --continue'
 alias gds='git diff --staged'
 alias gda='git dag --all'
+alias gitstdir='find . -maxdepth 1 -mindepth 1 -type d -exec sh -c "(echo {} && cd {} && git status -s)" \;'
 
 # Tries to detect a name of the main branch
 function main-branch {
