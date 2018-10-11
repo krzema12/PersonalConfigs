@@ -11,6 +11,10 @@ alias uuuuu='cd ../../../../../'
 alias uuuuuu='cd ../../../../../../'
 alias uuuuuuu='cd ../../../../../../../'
 
+md () {
+  pandoc $1 | lynx -stdin
+}
+
 # git-related.
 alias ga='git add -u'
 alias gca='git commit --amend'
