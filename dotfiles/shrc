@@ -1,3 +1,6 @@
+# Display tabs as 4 spaces
+env TERM=linux setterm -regtabs 4
+
 alias l='ls -la'
 alias less='less -r' # Interpreting color codes.
 
