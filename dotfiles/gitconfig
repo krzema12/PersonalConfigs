@@ -19,5 +19,5 @@
 
 [core]
         excludesfile = ~/.gitignore
-        pager = less -FMRiX
+        pager = less -FMRiX -x1,5
         editor = vim
