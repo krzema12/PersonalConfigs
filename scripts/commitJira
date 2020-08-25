@@ -1,0 +1,19 @@
+#!/usr/bin/env kscript
+
+@file:KotlinOpts("-J-Xmx1g") // For large repos - otherwise, grgit crashes.
+@file:DependsOn("org.ajoberstar.grgit:grgit-core:4.0.2")
+@file:DependsOn("org.codehaus.groovy:groovy:3.0.5")
+
+import org.ajoberstar.grgit.Grgit
+import groovy.lang.GroovyObject
+
+val givenTitle = args[0]
+
+val grgit = Grgit.open(mapOf("currentDir" to "."))
+val headCommitTitle = grgit.head().shortMessage
+val jiraTicketId = headCommitTitle.split(":")[0]
+
+val newCommitTitle = "$jiraTicketId: $givenTitle"
+
+println("Creating commit with title '$newCommitTitle'")
+grgit.commit(mapOf("message" to newCommitTitle))
