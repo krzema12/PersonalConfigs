@@ -5,3 +5,6 @@ set tabstop=4 " Tabs are displayed as 4 spaces.
 " Show tabs.
 set list
 set listchars=tab:>-
+
+" Margin for git commit messages.
+set colorcolumn=72
