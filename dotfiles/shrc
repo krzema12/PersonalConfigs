@@ -62,3 +62,6 @@ function gmb {
 
     echo "DONE!"
 }
+
+export PATH="$PATH:~/PersonalConfigs/scripts"
+
