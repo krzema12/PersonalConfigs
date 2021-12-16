@@ -15,13 +15,6 @@ val git = Git.open(File("."))
 
 val remote = "origin"
 
-val localBranches = git.branchList().call()
-    .map { it.name.replaceFirst("refs/heads/", "") }
-println("Local branches:")
-localBranches.forEach { branch ->
-    println("  ${green(branch)}")
-}
-
 val remoteBranches = git.branchList()
     .setListMode(ListBranchCommand.ListMode.REMOTE)
     .call()
@@ -29,6 +22,13 @@ val remoteBranches = git.branchList()
 println("Remote branches:")
 remoteBranches.forEach { branch ->
     println("  ${red(branch)}")
+}
+
+val localBranches = git.branchList().call()
+    .map { it.name.replaceFirst("refs/heads/", "") }
+println("Local branches:")
+localBranches.forEach { branch ->
+    println("  ${green(branch)}")
 }
 
 val branchesToRemove = localBranches.filter { branch ->
