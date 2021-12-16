@@ -1,7 +1,6 @@
 #!/usr/bin/env kotlin
 
 @file:DependsOn("org.eclipse.jgit:org.eclipse.jgit:4.6.0.201612231935-r")
-@file:DependsOn("org.slf4j:slf4j-simple:1.7.30")
 
 import org.eclipse.jgit.api.Git
 import org.eclipse.jgit.api.ListBranchCommand
