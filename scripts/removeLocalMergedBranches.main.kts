@@ -1,35 +1,39 @@
 #!/usr/bin/env kotlin
 
-@file:Repository("https://ajoberstar.org/bintray-backup/ajoberstar-backup")
-@file:DependsOn("org.codehaus.groovy:groovy:3.0.5")
-@file:DependsOn("org.ajoberstar.grgit:grgit-core:4.0.2")
+@file:DependsOn("org.eclipse.jgit:org.eclipse.jgit:4.6.0.201612231935-r")
 @file:DependsOn("org.slf4j:slf4j-simple:1.7.30")
 
-import org.ajoberstar.grgit.Grgit
-import org.ajoberstar.grgit.operation.BranchListOp
+import org.eclipse.jgit.api.Git
+import org.eclipse.jgit.api.ListBranchCommand
+import java.io.File
 import kotlin.system.exitProcess
 
 fun red(text: String) = "\u001B[31m$text\u001B[0m"
 fun green(text: String) = "\u001B[32m$text\u001B[0m"
 fun blue(text: String) = "\u001B[34m$text\u001B[0m"
 
-val grgit = Grgit.open(mapOf("currentDir" to "."))
+val git = Git.open(File("."))
+
 val remote = "origin"
 
-val localBranches = grgit.branch.list(mapOf("mode" to BranchListOp.Mode.LOCAL))
+val localBranches = git.branchList().call()
+    .map { it.name.replaceFirst("refs/heads/", "") }
 println("Local branches:")
 localBranches.forEach { branch ->
-    println("  ${green(branch.name)}")
+    println("  ${green(branch)}")
 }
 
-val remoteBranches = grgit.branch.list(mapOf("mode" to BranchListOp.Mode.REMOTE))
+val remoteBranches = git.branchList()
+    .setListMode(ListBranchCommand.ListMode.REMOTE)
+    .call()
+    .map { it.name.replaceFirst("refs/remotes/origin/", "") }
 println("Remote branches:")
 remoteBranches.forEach { branch ->
-    println("  ${red(branch.name)}")
+    println("  ${red(branch)}")
 }
 
 val branchesToRemove = localBranches.filter { branch ->
-    remoteBranches.firstOrNull { it.name == "$remote/${branch.name}" } == null
+    remoteBranches.firstOrNull { it == branch } == null
 }
 
 println()
@@ -41,15 +45,18 @@ if (branchesToRemove.isEmpty()) {
 
 println("Candidates to remove:")
 branchesToRemove.forEach { branch ->
-    println("  ${blue(branch.name)}")
+    println("  ${blue(branch)}")
 }
 
 println("Asking branch by branch:")
 
 branchesToRemove.forEach { branch ->
-    println("* Remove ${branch.name}? y/n ")
+    println("* Remove ${branch}? y/n ")
     val answer = readLine()
     if (answer == "y") {
-        grgit.branch.remove(mapOf("names" to listOf(branch.name), "force" to true))
+        git.branchDelete()
+            .setBranchNames(branch)
+            .setForce(true)
+            .call()
     }
 }
