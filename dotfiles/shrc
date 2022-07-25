@@ -28,7 +28,7 @@ alias gitstdir='find . -maxdepth 1 -mindepth 1 -type d -exec sh -c "(echo {} && 
 
 # Tries to detect a name of the main branch
 function main-branch {
-  BRANCH_NAMES_TO_TRY=(master mainline)
+  BRANCH_NAMES_TO_TRY=(master mainline main)
 
   for BRANCH_NAME in ${BRANCH_NAMES_TO_TRY[@]}
   do
