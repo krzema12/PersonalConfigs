@@ -13,6 +13,7 @@
         split = reset HEAD^
 [push]
         default = simple
+        autoSetupRemote = true
 
 [rerere]
         enabled = true
